@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-sonar-bg text-sonar-text min-h-screen font-sans antialiased overflow-hidden;
+  }
+}
+
+/* Leaflet Map container must have a height */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+  background-color: #050806; /* sonar-bg */
+}
+
+/* Customizing Leaflet Popup */
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  @apply bg-sonar-surface text-sonar-text border border-white/10 rounded-lg !important;
+}
+
+.leaflet-popup-content {
+  margin: 0.5rem 0.75rem !important;
+  line-height: 1.4;
+}
+
+.leaflet-popup-close-button {
+  color: #B6C2BA !important; /* sonar-muted */
+}
