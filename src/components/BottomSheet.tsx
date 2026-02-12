@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { RoutePlan } from '../types';
-import { Clock, Footprints } from 'lucide-react';
+import { Clock, Footprints, X } from 'lucide-react';
 import { PlaceCard } from './PlaceCard';
 
 interface BottomSheetProps {
@@ -16,82 +16,110 @@ export const BottomSheet = ({ route, onStepClick, selectedStepId }: BottomSheetP
 
   return (
     <div
-      className={`fixed bottom-0 left-0 right-0 bg-sonar-surface rounded-t-3xl shadow-2xl transition-transform duration-300 ease-in-out border-t border-white/10 flex flex-col ${
-        isOpen ? 'translate-y-0' : 'translate-y-[calc(100%-80px)]'
-      }`}
-      style={{ height: '60vh', zIndex: 1000 }}
+      className={`fixed bottom-0 left-0 right-0 bg-sonar-surface/95 backdrop-blur-xl rounded-t-3xl shadow-2xl transition-transform duration-300 ease-in-out border-t border-white/10 flex flex-col z-[1000]`}
+      style={{
+          height: isOpen ? '60vh' : '140px',
+          transform: `translateY(${isOpen ? '0' : 'calc(60vh - 140px)'})`
+      }}
     >
       {/* Handle */}
       <div
-        className="h-8 shrink-0 flex items-center justify-center cursor-pointer w-full"
+        className="h-8 shrink-0 flex items-center justify-center cursor-pointer w-full hover:bg-white/5 active:bg-white/10 transition-colors rounded-t-3xl"
         onClick={() => setIsOpen(!isOpen)}
       >
         <div className="w-12 h-1.5 bg-white/20 rounded-full" />
       </div>
 
       {/* Content */}
-      <div className="px-6 pb-8 overflow-y-auto flex-1">
+      <div className="px-6 pb-8 overflow-y-auto flex-1 scrollbar-hide">
 
         {/* Header Summary */}
-        <div className="flex items-center justify-between mb-6 sticky top-0 bg-sonar-surface py-2 z-10 border-b border-white/5">
-          <div>
-            <h2 className="text-xl font-bold text-white">Route Plan</h2>
-            <div className="flex items-center gap-3 text-sm text-sonar-muted mt-1">
-              <span className="flex items-center gap-1"><Clock size={14} /> {route.eta_min} min</span>
-              <span className="flex items-center gap-1"><Footprints size={14} /> {route.total_distance_km} km</span>
+        <div className="flex flex-col gap-2 mb-6">
+          <div className="flex justify-between items-start">
+            <div>
+                <h2 className="text-2xl font-bold text-white leading-tight">
+                    {route.title || "Your Route"}
+                </h2>
+                {route.description && (
+                    <p className="text-sm text-sonar-muted line-clamp-2 mt-1">
+                        {route.description}
+                    </p>
+                )}
             </div>
+            {/* "Start" button could be here, or maybe just stats */}
           </div>
-          <button className="bg-sonar-accent text-sonar-bg px-4 py-2 rounded-lg font-bold text-sm shadow-lg shadow-sonar-accent/20">
-            Start
-          </button>
+
+          <div className="flex items-center gap-4 text-sm font-medium text-sonar-accent bg-sonar-accent/10 px-4 py-3 rounded-xl border border-sonar-accent/20 w-fit">
+            <span className="flex items-center gap-1.5"><Clock size={16} /> {route.eta_min} min</span>
+            <div className="w-px h-4 bg-sonar-accent/20" />
+            <span className="flex items-center gap-1.5"><Footprints size={16} /> {route.total_distance_km} km</span>
+          </div>
         </div>
 
         {/* Selected Card View */}
         {selectedStep && selectedStep.place_card ? (
-          <div className="mb-6 animate-fade-in">
+          <div className="animate-slide-up pb-20">
              <div className="flex justify-between items-center mb-4">
                 <button
                   onClick={(e) => { e.stopPropagation(); onStepClick(''); }}
-                  className="text-sonar-accent text-sm hover:underline"
+                  className="flex items-center gap-2 text-sonar-muted hover:text-white transition-colors text-sm font-medium bg-white/5 px-3 py-1.5 rounded-lg"
                 >
-                  ← Back to list
+                  <X size={14} /> Close
                 </button>
              </div>
              <PlaceCard card={selectedStep.place_card} />
           </div>
         ) : (
           /* Steps List */
-          <div className="space-y-0">
+          <div className="space-y-0 pb-10 relative">
+            {/* Vertical Line Connector */}
+            <div className="absolute left-[23px] top-4 bottom-4 w-0.5 bg-white/10 -z-10" />
+
             {route.waypoints.map((wp, idx) => (
               <div
                 key={wp.id}
                 onClick={() => onStepClick(wp.id)}
-                className={`flex items-stretch gap-4 p-3 rounded-xl transition-colors cursor-pointer border relative group ${
-                   selectedStepId === wp.id ? 'bg-white/5 border-sonar-accent/50' : 'hover:bg-white/5 border-transparent'
+                className={`flex items-start gap-4 p-3 rounded-xl transition-all cursor-pointer border group ${
+                   selectedStepId === wp.id
+                   ? 'bg-white/10 border-sonar-accent/50 scale-[1.02] shadow-lg'
+                   : 'hover:bg-white/5 border-transparent'
                 }`}
               >
-                {/* Timeline Line */}
-                {idx < route.waypoints.length - 1 && (
-                    <div className="absolute left-[23px] top-[36px] bottom-[-16px] w-0.5 bg-white/10 group-last:hidden" />
-                )}
-
-                <div className="flex flex-col items-center gap-1 mt-1 z-10">
-                  <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shadow-sm ${
-                    wp.type === 'stop' ? 'bg-sonar-accent text-sonar-bg' : 'bg-white/20 text-white'
-                  }`}>
-                    {idx + 1}
-                  </div>
+                {/* Icon/Number */}
+                <div className={`w-6 h-6 shrink-0 rounded-full flex items-center justify-center text-xs font-bold shadow-lg z-10 border-2 mt-1 ${
+                    wp.type === 'start' || wp.type === 'end'
+                    ? 'bg-sonar-bg border-white text-white'
+                    : wp.type === 'stop'
+                        ? 'bg-sonar-accent border-sonar-accent text-sonar-bg'
+                        : 'bg-sonar-surface border-white/20 text-sonar-muted'
+                }`}>
+                    {wp.type === 'start' ? 'S' : wp.type === 'end' ? 'E' : idx + 1}
                 </div>
 
-                <div className="flex-1 pb-4">
-                   <h4 className={`font-medium ${wp.type === 'stop' ? 'text-white' : 'text-sonar-muted'}`}>
-                     {wp.name}
-                   </h4>
-                   {wp.arrival_time && (
-                     <p className="text-xs text-sonar-muted mt-0.5">
-                       {wp.arrival_time} • {wp.type === 'stop' ? 'Stop' : 'Walk'}
-                     </p>
+                <div className="flex-1 min-w-0">
+                   <div className="flex justify-between items-start">
+                       <h4 className={`font-medium truncate pr-2 ${wp.type === 'stop' ? 'text-white text-lg' : 'text-sonar-muted'}`}>
+                         {wp.name}
+                       </h4>
+                       {wp.arrival_time && (
+                         <span className="text-xs text-sonar-muted bg-white/5 px-1.5 py-0.5 rounded shrink-0">
+                           {wp.arrival_time}
+                         </span>
+                       )}
+                   </div>
+
+                   {wp.place_card?.why_here && (
+                       <p className="text-sm text-sonar-accent/80 mt-1 line-clamp-1 italic">
+                           "{wp.place_card.why_here}"
+                       </p>
                    )}
+
+                   <p className="text-xs text-sonar-muted mt-1 capitalize flex items-center gap-1">
+                       {wp.type}
+                       {wp.type === 'stop' && wp.place_card?.busy_level && (
+                           <>• <span className={wp.place_card.busy_level === 'high' ? 'text-red-400' : 'text-green-400'}>{wp.place_card.busy_level} crowd</span></>
+                       )}
+                   </p>
                 </div>
               </div>
             ))}

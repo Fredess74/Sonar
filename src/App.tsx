@@ -1,23 +1,24 @@
 import { useState, useEffect } from 'react';
 import { MapComponent } from './components/Map';
 import { BottomSheet } from './components/BottomSheet';
-import { JsonInput } from './components/JsonInput';
-import { mockIntent, mockRoutePlan } from './data/goldenPath';
-import type { RoutePlan } from './types';
-import { Settings, Play } from 'lucide-react';
+import { Planner } from './components/Planner';
+import { mockRoutePlan } from './data/goldenPath';
+import type { RoutePlan, LLMResponse } from './types';
+import { Play, Map as MapIcon, Layers } from 'lucide-react';
 
 function App() {
-  const [intentJson, setIntentJson] = useState(JSON.stringify(mockIntent, null, 2));
   const [routePlan, setRoutePlan] = useState<RoutePlan>(mockRoutePlan);
   const [selectedStepId, setSelectedStepId] = useState<string | undefined>(undefined);
-  const [isJsonOpen, setIsJsonOpen] = useState(false);
+  const [isPlannerOpen, setIsPlannerOpen] = useState(false);
   const [isSimulating, setIsSimulating] = useState(false);
 
-  // Simulation Logic (simple step advancement)
+  // Store all generated options to allow switching (future feature)
+  const [generatedOptions, setGeneratedOptions] = useState<RoutePlan[]>([]);
+
+  // Simulation Logic
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
     if (isSimulating) {
-        // Simple simulation: just cycle through stops every 3 seconds
         let currentIdx = -1;
         if (selectedStepId) {
             currentIdx = routePlan.waypoints.findIndex(wp => wp.id === selectedStepId);
@@ -31,40 +32,55 @@ function App() {
     return () => clearInterval(interval);
   }, [isSimulating, routePlan, selectedStepId]);
 
-  const handleApplyJson = (json: string) => {
-      setIntentJson(json);
-      // In a real app, this would call the API.
-      // Here we just re-set the mock plan for demo purposes.
-      // We trigger a slight "loading" effect or state update to show responsiveness
-      const newPlan = { ...mockRoutePlan, trip_id: `trip-${Date.now()}` };
-      setRoutePlan(newPlan);
-      setIsJsonOpen(false);
-      setSelectedStepId(undefined);
+  const handleRouteGenerated = (response: LLMResponse) => {
+      console.log("New Route Generated:", response);
+      if (response.routes && response.routes.length > 0) {
+          setGeneratedOptions(response.routes);
+          setRoutePlan(response.routes[0]); // Default to the first option
+          setIsPlannerOpen(false);
+          setSelectedStepId(undefined);
+      }
   };
 
   return (
     <div className="h-screen w-screen bg-sonar-bg text-sonar-text overflow-hidden relative flex flex-col">
       {/* Top Bar */}
       <div className="absolute top-0 left-0 right-0 z-[1000] p-4 flex justify-between items-start pointer-events-none">
-        <h1 className="text-2xl font-bold text-sonar-accent drop-shadow-md pointer-events-auto">
+        <h1 className="text-2xl font-bold text-sonar-accent drop-shadow-md pointer-events-auto bg-sonar-bg/20 backdrop-blur-sm px-2 rounded-lg">
           Sonar
         </h1>
         <div className="flex flex-col gap-2 pointer-events-auto">
             <button
-                onClick={() => setIsJsonOpen(true)}
-                className="bg-sonar-surface/80 backdrop-blur p-2 rounded-full border border-white/10 text-white shadow-lg hover:bg-sonar-surface transition-colors"
-                title="Edit Intent JSON"
+                onClick={() => setIsPlannerOpen(true)}
+                className="bg-sonar-surface/80 backdrop-blur p-3 rounded-full border border-white/10 text-white shadow-lg hover:bg-sonar-surface transition-colors group"
+                title="Plan New Trip"
             >
-                <Settings size={20} />
+                <MapIcon size={24} className="group-hover:scale-110 transition-transform" />
             </button>
+
+            {generatedOptions.length > 1 && (
+                <button
+                    onClick={() => {
+                        // Simple toggle for MVP to cycle routes
+                        const currentIdx = generatedOptions.findIndex(r => r === routePlan);
+                        const nextIdx = (currentIdx + 1) % generatedOptions.length;
+                        setRoutePlan(generatedOptions[nextIdx]);
+                    }}
+                    className="bg-sonar-surface/80 backdrop-blur p-3 rounded-full border border-white/10 text-white shadow-lg hover:bg-sonar-surface transition-colors"
+                    title="Switch Route Option"
+                >
+                    <Layers size={24} />
+                </button>
+            )}
+
             <button
                 onClick={() => setIsSimulating(!isSimulating)}
-                className={`p-2 rounded-full border border-white/10 shadow-lg transition-colors ${
+                className={`p-3 rounded-full border border-white/10 shadow-lg transition-colors ${
                     isSimulating ? 'bg-sonar-accent text-sonar-bg' : 'bg-sonar-surface/80 text-white hover:bg-sonar-surface'
                 }`}
                 title={isSimulating ? "Stop Simulation" : "Start Simulation"}
             >
-                <Play size={20} className={isSimulating ? 'fill-current' : ''} />
+                <Play size={24} className={isSimulating ? 'fill-current' : ''} />
             </button>
         </div>
       </div>
@@ -85,12 +101,11 @@ function App() {
         selectedStepId={selectedStepId}
       />
 
-      {/* JSON Input Modal */}
-      {isJsonOpen && (
-          <JsonInput
-            defaultValue={intentJson}
-            onApply={handleApplyJson}
-            onClose={() => setIsJsonOpen(false)}
+      {/* Planner Modal */}
+      {isPlannerOpen && (
+          <Planner
+            onClose={() => setIsPlannerOpen(false)}
+            onRouteGenerated={handleRouteGenerated}
           />
       )}
     </div>
