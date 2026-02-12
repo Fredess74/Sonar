@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { RoutePlan } from '../types';
 import { Clock, Footprints, X } from 'lucide-react';
 import { PlaceCard } from './PlaceCard';
@@ -10,16 +10,22 @@ interface BottomSheetProps {
 }
 
 export const BottomSheet = ({ route, onStepClick, selectedStepId }: BottomSheetProps) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (selectedStepId) {
+      setIsOpen(true);
+    }
+  }, [selectedStepId]);
 
   const selectedStep = route.waypoints.find(wp => wp.id === selectedStepId);
 
   return (
     <div
-      className={`fixed bottom-0 left-0 right-0 bg-sonar-surface/95 backdrop-blur-xl rounded-t-3xl shadow-2xl transition-transform duration-300 ease-in-out border-t border-white/10 flex flex-col z-[1000]`}
+      className="fixed bottom-0 left-0 right-0 bg-sonar-surface/95 backdrop-blur-xl rounded-t-3xl shadow-2xl transition-transform duration-300 ease-in-out border-t border-white/10 flex flex-col z-[1000]"
       style={{
-          height: isOpen ? '60vh' : '140px',
-          transform: `translateY(${isOpen ? '0' : 'calc(60vh - 140px)'})`
+          height: '60vh',
+          transform: isOpen ? 'translateY(0)' : 'translateY(calc(100% - 140px))'
       }}
     >
       {/* Handle */}
