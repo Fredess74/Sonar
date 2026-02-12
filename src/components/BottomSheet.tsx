@@ -23,12 +23,15 @@ export const BottomSheet = ({ route, onStepClick, selectedStepId }: BottomSheetP
       }}
     >
       {/* Handle */}
-      <div
-        className="h-8 shrink-0 flex items-center justify-center cursor-pointer w-full hover:bg-white/5 active:bg-white/10 transition-colors rounded-t-3xl"
+      <button
+        type="button"
+        aria-label={isOpen ? "Collapse route details" : "Expand route details"}
+        aria-expanded={isOpen}
+        className="h-8 shrink-0 flex items-center justify-center cursor-pointer w-full hover:bg-white/5 active:bg-white/10 transition-colors rounded-t-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sonar-accent"
         onClick={() => setIsOpen(!isOpen)}
       >
         <div className="w-12 h-1.5 bg-white/20 rounded-full" />
-      </div>
+      </button>
 
       {/* Content */}
       <div className="px-6 pb-8 overflow-y-auto flex-1 scrollbar-hide">
@@ -76,10 +79,11 @@ export const BottomSheet = ({ route, onStepClick, selectedStepId }: BottomSheetP
             <div className="absolute left-[23px] top-4 bottom-4 w-0.5 bg-white/10 -z-10" />
 
             {route.waypoints.map((wp, idx) => (
-              <div
+              <button
                 key={wp.id}
+                type="button"
                 onClick={() => onStepClick(wp.id)}
-                className={`flex items-start gap-4 p-3 rounded-xl transition-all cursor-pointer border group ${
+                className={`w-full text-left flex items-start gap-4 p-3 rounded-xl transition-all cursor-pointer border group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent ${
                    selectedStepId === wp.id
                    ? 'bg-white/10 border-sonar-accent/50 scale-[1.02] shadow-lg'
                    : 'hover:bg-white/5 border-transparent'
@@ -121,7 +125,7 @@ export const BottomSheet = ({ route, onStepClick, selectedStepId }: BottomSheetP
                        )}
                    </p>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
         )}

@@ -54,6 +54,7 @@ function App() {
                 onClick={() => setIsPlannerOpen(true)}
                 className="bg-sonar-surface/80 backdrop-blur p-3 rounded-full border border-white/10 text-white shadow-lg hover:bg-sonar-surface transition-colors group"
                 title="Plan New Trip"
+                aria-label="Plan New Trip"
             >
                 <MapIcon size={24} className="group-hover:scale-110 transition-transform" />
             </button>
@@ -68,6 +69,7 @@ function App() {
                     }}
                     className="bg-sonar-surface/80 backdrop-blur p-3 rounded-full border border-white/10 text-white shadow-lg hover:bg-sonar-surface transition-colors"
                     title="Switch Route Option"
+                    aria-label="Switch Route Option"
                 >
                     <Layers size={24} />
                 </button>
@@ -79,6 +81,7 @@ function App() {
                     isSimulating ? 'bg-sonar-accent text-sonar-bg' : 'bg-sonar-surface/80 text-white hover:bg-sonar-surface'
                 }`}
                 title={isSimulating ? "Stop Simulation" : "Start Simulation"}
+                aria-label={isSimulating ? "Stop Simulation" : "Start Simulation"}
             >
                 <Play size={24} className={isSimulating ? 'fill-current' : ''} />
             </button>
