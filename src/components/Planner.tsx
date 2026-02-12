@@ -54,7 +54,7 @@ export const Planner = ({ onClose, onRouteGenerated }: PlannerProps) => {
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${step === 'prompt' ? 'bg-sonar-accent text-sonar-bg' : 'bg-white/10 text-sonar-muted'}`}>2</div>
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${step === 'json' ? 'bg-sonar-accent text-sonar-bg' : 'bg-white/10 text-sonar-muted'}`}>3</div>
                 </div>
-                <button onClick={onClose} className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors">
+                <button onClick={onClose} className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors" aria-label="Close planner">
                     <X size={20} />
                 </button>
             </div>
