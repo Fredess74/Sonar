@@ -25,7 +25,11 @@ export const JsonInput = ({ defaultValue, onApply, onClose }: JsonInputProps) =>
         <div className="fixed inset-0 z-[2000] bg-sonar-bg/95 backdrop-blur-sm flex flex-col p-6 animate-fade-in">
             <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-bold text-white">Edit Intent</h2>
-                <button onClick={onClose} className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors">
+                <button
+                    onClick={onClose}
+                    className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors"
+                    aria-label="Close"
+                >
                     <X size={20} className="text-white" />
                 </button>
             </div>

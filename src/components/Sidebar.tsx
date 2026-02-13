@@ -24,6 +24,7 @@ export const Sidebar = ({ route, selectedStepId, onStepClick }: SidebarProps) =>
         onClick={() => setIsCollapsed(!isCollapsed)}
         className="absolute top-4 right-[-12px] translate-x-1/2 z-30 p-1 bg-sonar-accent text-sonar-bg rounded-full shadow-lg hover:scale-110 transition-transform cursor-pointer border-2 border-sonar-bg"
         title={isCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
+        aria-label={isCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
       >
         {isCollapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
       </button>
