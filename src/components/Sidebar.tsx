@@ -22,8 +22,9 @@ export const Sidebar = ({ route, selectedStepId, onStepClick }: SidebarProps) =>
       {/* Toggle Button */}
       <button
         onClick={() => setIsCollapsed(!isCollapsed)}
-        className="absolute top-4 right-[-12px] translate-x-1/2 z-30 p-1 bg-sonar-accent text-sonar-bg rounded-full shadow-lg hover:scale-110 transition-transform cursor-pointer border-2 border-sonar-bg"
+        className="absolute top-4 right-[-12px] translate-x-1/2 z-30 p-1 bg-sonar-accent text-sonar-bg rounded-full shadow-lg hover:scale-110 transition-transform cursor-pointer border-2 border-sonar-bg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent"
         title={isCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
+        aria-label={isCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
       >
         {isCollapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
       </button>
@@ -68,7 +69,8 @@ export const Sidebar = ({ route, selectedStepId, onStepClick }: SidebarProps) =>
              <div className="animate-fade-in">
                  <button
                     onClick={() => onStepClick('')}
-                    className="mb-4 text-sm text-sonar-muted hover:text-white flex items-center gap-1 transition-colors hover:translate-x-[-2px]"
+                    className="mb-4 text-sm text-sonar-muted hover:text-white flex items-center gap-1 transition-colors hover:translate-x-[-2px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent rounded"
+                    aria-label="Back to full route timeline"
                  >
                     <ChevronLeft size={14} /> Back to timeline
                  </button>
@@ -81,10 +83,12 @@ export const Sidebar = ({ route, selectedStepId, onStepClick }: SidebarProps) =>
                 <div className="absolute left-[27px] top-4 bottom-4 w-0.5 bg-gradient-to-b from-sonar-accent/50 via-sonar-accent/20 to-transparent pointer-events-none" />
 
                 {route.waypoints.map((wp, idx) => (
-                    <div
+                    <button
                         key={wp.id}
+                        type="button"
                         onClick={() => onStepClick(wp.id)}
-                        className={`relative group flex items-start gap-4 p-3 rounded-xl cursor-pointer transition-all border
+                        aria-current={selectedStepId === wp.id ? 'step' : undefined}
+                        className={`w-full text-left relative group flex items-start gap-4 p-3 rounded-xl cursor-pointer transition-all border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent
                             ${selectedStepId === wp.id
                                 ? 'bg-white/10 border-sonar-accent/40 shadow-[0_0_15px_rgba(25,195,125,0.1)] translate-x-1'
                                 : 'hover:bg-white/5 border-transparent hover:border-white/5 hover:translate-x-1'}
@@ -132,7 +136,7 @@ export const Sidebar = ({ route, selectedStepId, onStepClick }: SidebarProps) =>
                                 </div>
                             )}
                         </div>
-                    </div>
+                    </button>
                 ))}
              </div>
          )}
