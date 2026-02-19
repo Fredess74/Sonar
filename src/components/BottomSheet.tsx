@@ -14,7 +14,7 @@ export const BottomSheet = ({ route, onStepClick, selectedStepId }: BottomSheetP
 
   useEffect(() => {
     if (selectedStepId) {
-      setIsOpen(true);
+      setTimeout(() => setIsOpen(true), 0);
     }
   }, [selectedStepId]);
 
