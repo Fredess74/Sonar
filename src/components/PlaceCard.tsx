@@ -56,7 +56,10 @@ export const PlaceCard = ({ card }: PlaceCardProps) => {
             <h3 className="text-xl font-bold text-white leading-tight group-hover:text-sonar-accent transition-colors">
                 {card.name}
             </h3>
-            <button className="text-sonar-muted hover:text-white transition-colors p-1">
+            <button
+                className="text-sonar-muted hover:text-white transition-colors p-1"
+                aria-label="Visit website"
+            >
                 <ExternalLink size={16} />
             </button>
           </div>
