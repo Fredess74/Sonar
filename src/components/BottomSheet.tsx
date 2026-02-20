@@ -14,7 +14,8 @@ export const BottomSheet = ({ route, onStepClick, selectedStepId }: BottomSheetP
 
   useEffect(() => {
     if (selectedStepId) {
-      setIsOpen(true);
+      // Defer state update to avoid "set state during render" warning and ensure smooth transition
+      setTimeout(() => setIsOpen(true), 0);
     }
   }, [selectedStepId]);
 
