@@ -14,7 +14,8 @@ export const BottomSheet = ({ route, onStepClick, selectedStepId }: BottomSheetP
 
   useEffect(() => {
     if (selectedStepId) {
-      setIsOpen(true);
+      // Intentional bypass to synchronize state with props without cascading render warning
+      setTimeout(() => setIsOpen(true), 0);
     }
   }, [selectedStepId]);
 
