@@ -82,17 +82,19 @@ export const Sidebar = ({ route, selectedStepId, onStepClick }: SidebarProps) =>
                 <div className="absolute left-[27px] top-4 bottom-4 w-0.5 bg-gradient-to-b from-sonar-accent/50 via-sonar-accent/20 to-transparent pointer-events-none" />
 
                 {route.waypoints.map((wp, idx) => (
-                    <div
+                    <button
                         key={wp.id}
+                        type="button"
                         onClick={() => onStepClick(wp.id)}
-                        className={`relative group flex items-start gap-4 p-3 rounded-xl cursor-pointer transition-all border
+                        aria-current={selectedStepId === wp.id ? 'step' : undefined}
+                        className={`relative group w-full text-left flex items-start gap-4 p-3 rounded-xl cursor-pointer transition-all border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent
                             ${selectedStepId === wp.id
                                 ? 'bg-white/10 border-sonar-accent/40 shadow-[0_0_15px_rgba(25,195,125,0.1)] translate-x-1'
                                 : 'hover:bg-white/5 border-transparent hover:border-white/5 hover:translate-x-1'}
                         `}
                     >
                         {/* Timeline Node */}
-                        <div className={`w-6 h-6 shrink-0 rounded-full flex items-center justify-center text-[10px] font-bold z-10 border-2 mt-0.5 shadow-lg transition-transform group-hover:scale-110 ${
+                        <span className={`w-6 h-6 shrink-0 rounded-full flex items-center justify-center text-[10px] font-bold z-10 border-2 mt-0.5 shadow-lg transition-transform group-hover:scale-110 ${
                             wp.type === 'start' || wp.type === 'end'
                             ? 'bg-sonar-bg border-white text-white'
                             : selectedStepId === wp.id
@@ -100,29 +102,29 @@ export const Sidebar = ({ route, selectedStepId, onStepClick }: SidebarProps) =>
                                 : 'bg-sonar-surface border-sonar-accent text-sonar-accent'
                         }`}>
                             {wp.type === 'start' ? 'S' : wp.type === 'end' ? 'E' : idx + 1}
-                        </div>
+                        </span>
 
-                        <div className="flex-1 min-w-0">
-                            <div className="flex justify-between items-center mb-0.5">
-                                <h4 className={`font-medium text-sm truncate transition-colors ${selectedStepId === wp.id ? 'text-sonar-accent' : 'text-white'}`}>
+                        <span className="flex-1 min-w-0 flex flex-col text-left">
+                            <span className="flex justify-between items-center mb-0.5 w-full">
+                                <span className={`font-medium text-sm truncate transition-colors ${selectedStepId === wp.id ? 'text-sonar-accent' : 'text-white'}`}>
                                     {wp.name}
-                                </h4>
+                                </span>
                                 {wp.arrival_time && (
                                     <span className="text-[10px] text-sonar-muted bg-white/5 px-1.5 rounded shrink-0">
                                         {wp.arrival_time}
                                     </span>
                                 )}
-                            </div>
+                            </span>
 
                             {wp.place_card?.description && (
-                                <p className="text-xs text-sonar-muted line-clamp-1 group-hover:text-white/80 transition-colors">
+                                <span className="block text-xs text-sonar-muted line-clamp-1 group-hover:text-white/80 transition-colors">
                                     {wp.place_card?.description}
-                                </p>
+                                </span>
                             )}
 
                             {/* Tags or Status */}
                             {wp.place_card?.busy_level && (
-                                <div className="flex gap-2 mt-2">
+                                <span className="flex gap-2 mt-2">
                                     <span className={`text-[10px] px-1.5 py-0.5 rounded border uppercase tracking-wider ${
                                         wp.place_card.busy_level === 'high'
                                         ? 'border-red-500/30 text-red-400 bg-red-500/10'
@@ -130,10 +132,10 @@ export const Sidebar = ({ route, selectedStepId, onStepClick }: SidebarProps) =>
                                     }`}>
                                         {wp.place_card.busy_level}
                                     </span>
-                                </div>
+                                </span>
                             )}
-                        </div>
-                    </div>
+                        </span>
+                    </button>
                 ))}
              </div>
          )}
