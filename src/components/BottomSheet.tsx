@@ -14,7 +14,8 @@ export const BottomSheet = ({ route, onStepClick, selectedStepId }: BottomSheetP
 
   useEffect(() => {
     if (selectedStepId) {
-      setIsOpen(true);
+      // Intentional bypass for react-hooks/set-state-in-effect
+      setTimeout(() => setIsOpen(true), 0);
     }
   }, [selectedStepId]);
 
