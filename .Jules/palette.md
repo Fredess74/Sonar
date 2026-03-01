@@ -1,0 +1,3 @@
+## 2025-02-28 - [Accessible Interactive Timeline Steps]
+**Learning:** Interactive timeline list items (like steps in `Sidebar` and `BottomSheet`) shouldn't be `div` elements with `onClick`. They require more structured accessibility to be usable by everyone.
+**Action:** Always implement interactive list items as `<button type='button'>` elements. Apply `w-full text-left` to maintain layout, add `aria-current="step"` to the currently active item, and ensure explicit `focus-visible` styles are set (e.g., `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent`) for keyboard navigation.
