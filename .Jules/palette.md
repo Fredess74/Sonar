@@ -1,0 +1,3 @@
+## 2024-05-24 - [Sidebar Timeline Accessibility]
+**Learning:** Found an inconsistency where mobile BottomSheet timeline steps were implemented as accessible `<button>`s, but desktop Sidebar timeline steps were inaccessible `<div>` elements with `onClick` handlers.
+**Action:** Always verify keyboard focus and ensure interactive list items are implemented semantically as buttons (`<button type="button">`) with `w-full text-left` to maintain standard block layout behavior and `focus-visible` styling for accessibility.
