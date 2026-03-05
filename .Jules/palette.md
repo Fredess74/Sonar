@@ -1,0 +1,3 @@
+## 2024-05-18 - [Accessibility: Interactive Timeline Items]
+**Learning:** Interactive list items (like the timeline steps in Sidebar and BottomSheet) must be implemented as semantic `<button type="button">` elements rather than `<div>` elements with `onClick` handlers. When using buttons for layout, properties like `w-full text-left` are necessary to preserve the design.
+**Action:** When creating custom list-like interactive components, always use native `<button>` elements, apply explicit `focus-visible` styles for keyboard navigation, and use `aria-current="step"` (or similar) to indicate the active/selected item to screen readers.
