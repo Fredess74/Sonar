@@ -25,6 +25,7 @@ export const Header = ({
         <input
           type="text"
           placeholder="Where to next?"
+          aria-label="Where to next?"
           className="bg-transparent border-none outline-none text-white text-sm w-full placeholder:text-sonar-muted/50"
         />
         <div className="w-px h-4 bg-white/10 mx-1" />

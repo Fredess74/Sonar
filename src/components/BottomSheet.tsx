@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import type { RoutePlan } from '../types';
 import { Clock, Footprints, X } from 'lucide-react';
 import { PlaceCard } from './PlaceCard';
@@ -11,12 +11,14 @@ interface BottomSheetProps {
 
 export const BottomSheet = ({ route, onStepClick, selectedStepId }: BottomSheetProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [prevSelectedStepId, setPrevSelectedStepId] = useState<string | undefined>(selectedStepId);
 
-  useEffect(() => {
+  if (selectedStepId !== prevSelectedStepId) {
+    setPrevSelectedStepId(selectedStepId);
     if (selectedStepId) {
       setIsOpen(true);
     }
-  }, [selectedStepId]);
+  }
 
   const selectedStep = route.waypoints.find(wp => wp.id === selectedStepId);
 
