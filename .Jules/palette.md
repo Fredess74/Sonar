@@ -1,0 +1,3 @@
+## 2024-05-18 - Header and BottomSheet Improvements
+**Learning:** React 16.4+ recommends avoiding `useEffect` for synchronizing state with props (e.g. setting `isOpen` based on `selectedStepId` changing). Using derived state directly during render is safer, avoids a double-render tick, and correctly circumvents the `react-hooks/set-state-in-effect` lint rule.
+**Action:** When a component needs to reset or trigger UI state (like opening a sheet) in response to a prop change, use derived state pattern (caching the previous prop value in state and updating it directly in render) instead of an effect. Also, always ensure input fields have an `aria-label` if they lack an explicit `label` element.
