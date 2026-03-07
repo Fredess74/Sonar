@@ -1,0 +1,3 @@
+## 2024-05-24 - [Accessible Timeline Component]
+**Learning:** Timeline steps implemented as interactive elements (e.g. route waypoints) must use `<button type="button">` instead of `<div>`. Crucially, screen readers require context to understand which step is currently selected, which is best achieved via `aria-current="step"`. Adding keyboard support requires explicit `focus-visible` styles as native focus rings often clash with custom UI.
+**Action:** When building interactive lists or timelines, always default to semantic buttons, implement explicit `aria-current` attributes for selected states, and ensure `focus-visible` ring utilities are applied.
