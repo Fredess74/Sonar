@@ -1,0 +1,3 @@
+## 2024-05-24 - Interactive List Items Accessibility Pattern
+**Learning:** Found a pattern where interactive timeline items in `Sidebar.tsx` were implemented as generic `<div>` elements with `onClick` handlers. This completely excludes keyboard users and screen readers from interacting with or understanding the current state of the route timeline.
+**Action:** Always implement interactive list items (like timeline steps) using `<button type='button'>`. Apply `w-full text-left` to maintain standard block layout, `aria-current="step"` for selected states, and explicit `focus-visible` styles (`focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sonar-accent`) to ensure keyboard navigability.
