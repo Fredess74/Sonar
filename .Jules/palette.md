@@ -1,0 +1,3 @@
+## 2025-03-10 - Sidebar Timeline Accessibility Pattern
+**Learning:** Interactive list items like timeline steps in the desktop Sidebar were originally implemented as `div` elements, breaking keyboard accessibility and screen reader support (no focus state, semantic meaning, or selected state indication).
+**Action:** Always implement interactive list items as `<button type='button'>` with `w-full text-left`, explicit `focus-visible` styles (`focus-visible:ring-2`, `focus-visible:ring-sonar-accent`), and semantic `aria-current` (e.g., `'step'`) to clearly communicate their interactive nature and selected state to assistive technologies while preserving styling.
