@@ -36,6 +36,7 @@ export const JsonInput = ({ defaultValue, onApply, onClose }: JsonInputProps) =>
 
             <textarea
                 className="flex-1 bg-sonar-surface border border-white/10 rounded-xl p-4 text-sm font-mono text-sonar-muted focus:outline-none focus:border-sonar-accent resize-none mb-4"
+                aria-label="Edit route JSON"
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
                 spellCheck={false}
