@@ -82,10 +82,12 @@ export const Sidebar = ({ route, selectedStepId, onStepClick }: SidebarProps) =>
                 <div className="absolute left-[27px] top-4 bottom-4 w-0.5 bg-gradient-to-b from-sonar-accent/50 via-sonar-accent/20 to-transparent pointer-events-none" />
 
                 {route.waypoints.map((wp, idx) => (
-                    <div
+                    <button
+                        type="button"
                         key={wp.id}
                         onClick={() => onStepClick(wp.id)}
-                        className={`relative group flex items-start gap-4 p-3 rounded-xl cursor-pointer transition-all border
+                        aria-current={selectedStepId === wp.id ? "step" : undefined}
+                        className={`relative group flex items-start gap-4 p-3 rounded-xl cursor-pointer transition-all border w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent focus-visible:ring-inset
                             ${selectedStepId === wp.id
                                 ? 'bg-white/10 border-sonar-accent/40 shadow-[0_0_15px_rgba(25,195,125,0.1)] translate-x-1'
                                 : 'hover:bg-white/5 border-transparent hover:border-white/5 hover:translate-x-1'}
@@ -133,7 +135,7 @@ export const Sidebar = ({ route, selectedStepId, onStepClick }: SidebarProps) =>
                                 </div>
                             )}
                         </div>
-                    </div>
+                    </button>
                 ))}
              </div>
          )}
