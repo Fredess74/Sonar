@@ -1,0 +1,3 @@
+## 2024-05-24 - [Sidebar Timeline Accessibility]
+**Learning:** Interactive list items (like timeline steps in the Sidebar) should use semantic `<button type="button">` instead of `<div>` to ensure screen reader compatibility. This is specific to our timeline pattern which acts as a selector for map locations. Using `div` with `onClick` misses native keyboard support and a11y semantics.
+**Action:** When creating clickable list patterns, always use `<button type="button">` with `w-full text-left` to preserve layout, and include `aria-current="step"` for selected items along with `focus-visible:outline-none focus-visible:ring-2` for keyboard focus styles.
