@@ -1,0 +1,3 @@
+## 2024-05-15 - [Interactive Timeline Elements Accessibility]
+**Learning:** Interactive list items (like timeline steps) must be implemented as semantic `<button type='button'>` elements rather than `<div>` elements. This provides native keyboard focus support and clearer semantics for screen readers. Furthermore, adding explicit `focus-visible` styles with existing design tokens ensures accessibility standards are met without compromising the visual design. Using `aria-current` indicates selected states correctly.
+**Action:** Consistently replace generic `<div>` with `w-full text-left` semantic buttons when building custom interactive lists. Ensure `focus-visible` styling and `aria-current` properties are applied out-of-the-box.
