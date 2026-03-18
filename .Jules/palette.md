@@ -1,0 +1,4 @@
+## 2025-03-18 - Semantic Buttons & Focus Within
+
+**Learning:** Interactive list items (like timeline steps) often default to `div`s with `onClick` handlers, which completely breaks keyboard navigation and screen reader semantics. Additionally, custom search inputs nested in stylized containers (like the Header's search island) lose visible focus rings if the ring is applied directly to the internal un-bordered `<input>`.
+**Action:** Always implement interactive list items using `<button type="button">` with `w-full text-left` and explicit `focus-visible` styles. For compound components like a Search Island, use `focus-within` on the parent container to apply focus styles (border/shadow) instead of styling the input's outline directly. Ensure icon-only inputs and textareas always have an `aria-label`.
