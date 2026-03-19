@@ -1,0 +1,3 @@
+## 2024-03-19 - [Interactive Timeline List Items Accessibility]
+**Learning:** In the Sidebar component, timeline waypoints were implemented as clickable `div` elements, lacking native keyboard support and screen reader semantic meaning (no `aria-current` for the selected state).
+**Action:** Always implement interactive list items (like timeline steps) as `<button type='button'>` with `w-full text-left`, `cursor-pointer`, `aria-current` for selected states, and explicit `focus-visible` styles to ensure full keyboard and screen reader accessibility, rather than relying on clickable `div`s.
