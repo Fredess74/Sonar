@@ -67,6 +67,7 @@ export const Planner = ({ onClose, onRouteGenerated }: PlannerProps) => {
                         <textarea
                             className="flex-1 bg-sonar-surface border border-white/10 rounded-xl p-4 text-lg text-white focus:outline-none focus:border-sonar-accent resize-none placeholder-white/20"
                             placeholder="e.g. 'I want a quiet coffee tour in Soho with a focus on architecture, walking only.'"
+                            aria-label="Trip description"
                             value={request}
                             onChange={(e) => setRequest(e.target.value)}
                             autoFocus
@@ -90,6 +91,7 @@ export const Planner = ({ onClose, onRouteGenerated }: PlannerProps) => {
                             <textarea
                                 className="w-full h-full p-4 bg-transparent text-sm font-mono text-sonar-muted resize-none focus:outline-none"
                                 value={prompt}
+                                aria-label="Generated prompt"
                                 readOnly
                             />
                             <button
@@ -126,6 +128,7 @@ export const Planner = ({ onClose, onRouteGenerated }: PlannerProps) => {
                         <textarea
                             className={`flex-1 bg-sonar-surface border rounded-xl p-4 text-sm font-mono text-white focus:outline-none resize-none placeholder-white/20 ${error ? 'border-red-500/50' : 'border-white/10 focus:border-sonar-accent'}`}
                             placeholder="{ 'intent': ... }"
+                            aria-label="Paste JSON response here"
                             value={jsonInput}
                             onChange={(e) => {
                                 setJsonInput(e.target.value);
