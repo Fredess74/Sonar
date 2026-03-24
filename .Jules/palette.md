@@ -1,0 +1,3 @@
+## 2024-05-24 - Interactive Timeline Accessibility Pattern
+**Learning:** Timeline steps that function as navigation or reveal detailed content need to be explicitly announced and navigable. Simply adding `onClick` to a `div` obscures its interactive nature from screen readers and breaks keyboard navigation. Furthermore, users need to know which step is currently active.
+**Action:** When creating interactive timeline items, use `<button type="button">` with `w-full text-left` for proper layout. Apply `aria-current="step"` to the currently selected item to explicitly communicate the active state to assistive technologies, and ensure robust `:focus-visible` styling (e.g. `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent`) for keyboard users.
