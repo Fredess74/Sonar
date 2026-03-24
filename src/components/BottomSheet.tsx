@@ -71,7 +71,7 @@ export const BottomSheet = ({ route, onStepClick, selectedStepId }: BottomSheetP
              <div className="flex justify-between items-center mb-4">
                 <button
                   onClick={(e) => { e.stopPropagation(); onStepClick(''); }}
-                  className="flex items-center gap-2 text-sonar-muted hover:text-white transition-colors text-sm font-medium bg-white/5 px-3 py-1.5 rounded-lg"
+                  className="flex items-center gap-2 text-sonar-muted hover:text-white transition-colors text-sm font-medium bg-white/5 px-3 py-1.5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent"
                 >
                   <X size={14} /> Close
                 </button>
@@ -88,6 +88,7 @@ export const BottomSheet = ({ route, onStepClick, selectedStepId }: BottomSheetP
               <button
                 key={wp.id}
                 type="button"
+                aria-current={selectedStepId === wp.id ? 'step' : undefined}
                 onClick={() => onStepClick(wp.id)}
                 className={`w-full text-left flex items-start gap-4 p-3 rounded-xl transition-all cursor-pointer border group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent ${
                    selectedStepId === wp.id
