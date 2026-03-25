@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import type { RoutePlan } from '../types';
 import { Clock, Footprints, X } from 'lucide-react';
 import { PlaceCard } from './PlaceCard';
@@ -11,12 +11,15 @@ interface BottomSheetProps {
 
 export const BottomSheet = ({ route, onStepClick, selectedStepId }: BottomSheetProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [prevSelectedStepId, setPrevSelectedStepId] = useState<string | undefined>(undefined);
 
-  useEffect(() => {
+  // Derived state pattern: update state during render when prop changes
+  if (selectedStepId !== prevSelectedStepId) {
+    setPrevSelectedStepId(selectedStepId);
     if (selectedStepId) {
       setIsOpen(true);
     }
-  }, [selectedStepId]);
+  }
 
   const selectedStep = route.waypoints.find(wp => wp.id === selectedStepId);
 
@@ -89,6 +92,7 @@ export const BottomSheet = ({ route, onStepClick, selectedStepId }: BottomSheetP
                 key={wp.id}
                 type="button"
                 onClick={() => onStepClick(wp.id)}
+                aria-current={selectedStepId === wp.id ? "step" : undefined}
                 className={`w-full text-left flex items-start gap-4 p-3 rounded-xl transition-all cursor-pointer border group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent ${
                    selectedStepId === wp.id
                    ? 'bg-white/10 border-sonar-accent/50 scale-[1.02] shadow-lg'
