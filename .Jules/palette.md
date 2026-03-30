@@ -1,0 +1,3 @@
+## 2024-05-18 - Interactive Timeline Steps Accessibility
+**Learning:** In the Sonar application's sidebar, interactive timeline steps were previously implemented as `<div>` elements with `onClick` handlers, which hindered keyboard navigation and screen reader comprehension.
+**Action:** Always implement interactive list items (like timeline steps) as `<button type='button'>` with `w-full text-left` to maintain layout. Ensure explicit `focus-visible` styles (e.g., `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent`) are applied for keyboard accessibility, and use `aria-current` to communicate the selected state to assistive technologies.
