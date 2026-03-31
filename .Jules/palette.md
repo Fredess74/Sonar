@@ -1,0 +1,3 @@
+## 2024-03-31 - Glassmorphic Compound Component Focus Pattern
+**Learning:** In the Cyberpunk/Glassmorphic design system (e.g., the "Island" components), relying solely on `focus-visible` for the internal `<input>` breaks the visual boundary of the rounded container. Furthermore, static icons inside the container feel disconnected when the input is focused.
+**Action:** Use a combination of `focus-within` on the parent container to apply neon glow/border treatments, and apply the `group` class to the parent along with `group-focus-within:text-sonar-accent` on sibling icons. This creates a cohesive, accessible focus state for the entire compound element without needing JavaScript focus event handlers.
