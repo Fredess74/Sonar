@@ -1,0 +1,3 @@
+## 2024-04-02 - [Interactive List Item Accessibility Pattern]
+**Learning:** In the Sonar application, interactive list items like the timeline steps (in `Sidebar.tsx` and `BottomSheet.tsx`) should be implemented as `<button type='button'>` rather than `<div>` elements with `onClick` handlers.
+**Action:** When creating or refactoring interactive list items, ensure they use a `<button>` element with `w-full text-left`, `cursor-pointer`, and explicit `focus-visible` styles (e.g., `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent`). Additionally, use `aria-current="step"` (or similar appropriate values) to indicate the selected state to screen readers instead of relying solely on visual styling.
