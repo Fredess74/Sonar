@@ -1,0 +1,3 @@
+## 2025-02-14 - Accessible Glassmorphic Focus States
+**Learning:** Using `focus-within` on parent containers combined with `group-focus-within` on child elements (like icons) provides a clean, CSS-only way to highlight compound components (like the Search Island) when a child input receives focus. This is essential for glassmorphic/cyberpunk UIs where standard outline focus rings might clash with the design, and avoids the need for manual focus event listeners in React.
+**Action:** Always prefer `group` and `focus-within` utility classes in Tailwind for compound input components to ensure a cohesive focus state without sacrificing accessibility or relying on JavaScript state.
