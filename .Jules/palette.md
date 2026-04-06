@@ -1,0 +1,3 @@
+## 2025-02-28 - Semantic Buttons for Interactive List Items
+**Learning:** Timeline items and generic interactive list nodes are often incorrectly implemented as clickable `div` elements, breaking keyboard accessibility and screen reader support. Using `aria-current="step"` on semantic `<button type="button">` correctly conveys state.
+**Action:** When creating clickable list items, always use `<button type="button">` with `w-full text-left`, and explicit `focus-visible` styles (`focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent`) to ensure keyboard navigability and correct structural semantics.
