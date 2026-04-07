@@ -1,0 +1,3 @@
+## 2026-04-07 - [Timeline Accessibility Pattern]
+**Learning:** Interactive list items (like timeline steps) must be implemented as semantic `<button type='button'>` elements with `w-full text-left` to maintain layout, instead of relying on `<div>` elements with `onClick` handlers. Furthermore, their selected state must be communicated to screen readers via `aria-current="step"`.
+**Action:** Always verify that custom list interactions use `<button>` instead of `<div>`, include `focus-visible` styles for keyboard navigation, and apply appropriate `aria-` attributes to communicate state changes dynamically.
