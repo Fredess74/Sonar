@@ -1,0 +1,3 @@
+## 2024-04-09 - [Keyboard Navigability for Compound Components]
+**Learning:** Timeline-style components rendered as list items using standard `div` blocks with `onClick` handlers disrupt native screen reader flows and prevent users from navigating via the Tab key. Although visual hover states were present, keyboard focus tracking was completely invisible, creating an accessibility trap.
+**Action:** When building interactive lists (like route timelines), always map the items to semantic `<button type="button">` wrappers, apply native `aria-current` states, and explicitly configure Tailwind `focus-visible` ring pseudo-classes to ensure standard keyboard tab behavior is preserved without negatively impacting pointer users.
