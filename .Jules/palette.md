@@ -1,0 +1,3 @@
+## 2024-12-07 - [Timeline Button Accessibility]
+**Learning:** In a dual-view responsive layout (desktop sidebar + mobile bottom sheet), interactive list items representing a progression (like timeline waypoints) implemented as generic `div` elements lack proper semantic meaning and focus states for screen readers and keyboard users.
+**Action:** Always implement interactive list items as `<button type='button'>` with `w-full text-left` to reset default button alignment. Add `focus-visible` styles for explicit keyboard navigation feedback, and use the `aria-current='step'` attribute to programmatically convey the currently selected item in a sequence across all responsive views.
