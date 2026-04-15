@@ -1,0 +1,3 @@
+## 2023-10-27 - Semantic Buttons for Interactive Lists
+**Learning:** When building interactive lists (like the timeline steps in the Sidebar), using `<div>` wrappers and handling `onClick` is an accessibility anti-pattern. Screen readers may not treat them as interactive, and keyboard users lack proper feedback.
+**Action:** Replace `<div>` with `<button type="button">` for interactive list items. Add `w-full text-left` to maintain layout, `aria-current="step"` to indicate the active item, and explicit focus styles like `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent` to ensure robust keyboard navigation.
