@@ -1,0 +1,3 @@
+## 2024-04-18 - [Accessible Interactive Timeline Steps]
+**Learning:** In responsive designs where interactive timeline steps are displayed differently (e.g., as a sidebar list on desktop and a bottom sheet list on mobile), using generic `<div>` tags with `onClick` handlers creates an inaccessible experience for screen reader and keyboard users.
+**Action:** Always implement interactive timeline items as semantic `<button type="button">` elements with full width and left alignment (`w-full text-left`). Apply explicit focus styles (e.g., `focus-visible:ring-2`) and use `aria-current="step"` on the dynamically selected item to accurately announce its current status in the sequence.
