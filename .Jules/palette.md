@@ -1,0 +1,3 @@
+## 2024-03-24 - [Interactive Timeline Steps Accessibility]
+**Learning:** The application's core navigation relies on selecting waypoints from a timeline (both in Desktop Sidebar and Mobile BottomSheet). Using `div` tags for these items breaks keyboard accessibility and fails to communicate the currently active step to screen readers.
+**Action:** Interactive list items (like timeline steps in sequence) must be implemented as `<button type='button'>` with `w-full text-left`, `cursor-pointer`, and explicit `focus-visible` styles (e.g., `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent`). They must also include `aria-current='step'` for selected states across responsive views to properly convey the sequence state to assistive technologies.
