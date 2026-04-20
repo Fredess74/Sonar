@@ -1,0 +1,3 @@
+## 2026-04-20 - Timeline List Items as Accessible Buttons
+**Learning:** Interactive list items (like timeline steps in sequence) implemented as `div` elements are inaccessible via keyboard navigation. When adapting these to fully interactive UI elements across both desktop (Sidebar) and mobile (BottomSheet) views, they need identical baseline accessibility attributes.
+**Action:** Always implement interactive lists using `<button type='button'>` with `w-full text-left` to preserve layout, explicitly add `focus-visible` styles (e.g., `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent`) for proper keyboard interactions, and use `aria-current="step"` to communicate the selected step uniformly across all responsive views.
