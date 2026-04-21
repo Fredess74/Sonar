@@ -1,0 +1,3 @@
+## 2024-04-21 - [Timeline Step Semantic HTML & Accessibility]
+**Learning:** Interactive lists mimicking selectable timeline steps (like in Sidebar.tsx) using `div` with `onClick` create an accessibility barrier for screen readers and lack native keyboard focus behavior.
+**Action:** Always implement interactive sequential steps as semantic `<button type="button">` elements. Add `w-full text-left` to maintain standard block-level layout, apply `aria-current="step"` when the item is active, and ensure explicit focus visibility using utilities like `focus-visible:ring-2` to support keyboard navigation. Ensure consistency across responsive views (e.g., repeating `aria-current` in BottomSheet.tsx).
