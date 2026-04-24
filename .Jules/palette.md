@@ -1,0 +1,3 @@
+## 2024-05-19 - [Accessible Timeline Interactive Items]
+**Learning:** Interactive timeline list items initially used `div` elements, hiding them from keyboard navigation and missing `aria-current` state.
+**Action:** When creating or modifying lists that function as interactive steps or selections (like in `Sidebar`), always ensure they are implemented as `<button type='button'>` elements with `w-full text-left` and `cursor-pointer`, utilize explicit `focus-visible` styles (`focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent`), and set `aria-current='step'` for the currently active/selected item to ensure proper screen reader support.
