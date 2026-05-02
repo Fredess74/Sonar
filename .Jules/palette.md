@@ -1,0 +1,4 @@
+
+## 2024-05-18 - [Accessibility: Interactive List Items]
+**Learning:** Interactive list items (like timeline steps in sequence) that trigger state changes should not be `div`s with `onClick`. They must be implemented as `<button type='button'>` to provide out-of-the-box keyboard interactivity (Space/Enter). Additionally, `aria-current='step'` is crucial to indicate selected states to screen readers across responsive views, and explicit `focus-visible` styles (e.g., `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent`) are necessary for clear keyboard navigation indicators without affecting mouse clicks.
+**Action:** Always use `<button type='button'>` with `w-full text-left`, `cursor-pointer`, `aria-current`, and `focus-visible` styles instead of `div` elements for clickable list items or timeline nodes.
