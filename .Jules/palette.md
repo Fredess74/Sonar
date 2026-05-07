@@ -1,0 +1,3 @@
+## 2024-05-07 - Timeline Items Accessibility
+**Learning:** The desktop `Sidebar` and mobile `BottomSheet` timeline items were lacking semantic HTML and ARIA attributes for active states. They were built as `div` and `button` respectively but missed keyboard focus visibility (`focus-visible`) and screen-reader context (`aria-current`).
+**Action:** Always use `<button type="button">` for interactive list items, combined with `aria-current="step"` for active elements. Apply `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color]` to ensure proper keyboard navigation visibility.
