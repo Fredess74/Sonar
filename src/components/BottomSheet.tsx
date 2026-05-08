@@ -14,6 +14,7 @@ export const BottomSheet = ({ route, onStepClick, selectedStepId }: BottomSheetP
 
   useEffect(() => {
     if (selectedStepId) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsOpen(true);
     }
   }, [selectedStepId]);
@@ -88,6 +89,7 @@ export const BottomSheet = ({ route, onStepClick, selectedStepId }: BottomSheetP
               <button
                 key={wp.id}
                 type="button"
+                aria-current={selectedStepId === wp.id ? "step" : undefined}
                 onClick={() => onStepClick(wp.id)}
                 className={`w-full text-left flex items-start gap-4 p-3 rounded-xl transition-all cursor-pointer border group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent ${
                    selectedStepId === wp.id
