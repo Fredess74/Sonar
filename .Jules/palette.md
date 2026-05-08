@@ -1,0 +1,3 @@
+## 2024-05-08 - Accessible Interactive Lists
+**Learning:** In the sequence timeline (e.g., Sidebar), clickable elements that function as navigational step selectors often default to generic `div` elements visually masked by hover states. This hides the interactable semantics and selected state from assistive technologies.
+**Action:** Always implement interactive sequence items as `<button type="button">` explicitly scoped with structure like `w-full text-left`. Maintain a clear indication of the active item via dynamic `aria-current="step"`, and ensure visible, keyboard-friendly focus outlines are present using `focus-visible:outline-none focus-visible:ring-2` to support non-mouse users navigating lists.
