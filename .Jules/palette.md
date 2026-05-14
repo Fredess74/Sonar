@@ -1,0 +1,4 @@
+
+## 2024-05-18 - [Accessibility: Interactive List Items]
+**Learning:** In a timeline or sequential list (like the Sidebar and BottomSheet waypoints), using `<div>` with `onClick` completely breaks keyboard navigation and screen reader semantics. When converting these to `<button type='button'>`, they must include explicit width (`w-full`), alignment (`text-left`), and `focus-visible` styles to remain visually consistent while becoming fully accessible. Additionally, for responsive dual-view elements (Sidebar vs BottomSheet), Playwright `get_by_role('button')` can fail due to duplicate text across views; you must scope locators to specific container classes.
+**Action:** Always implement interactive list items as `<button>` elements with `w-full text-left`, explicit focus rings (`focus-visible:ring-2`), and `aria-current='step'` for the selected state.
