@@ -1,0 +1,3 @@
+## 2026-05-15 - [Interactive Timeline Accessibility]
+**Learning:** The custom timeline nodes in the Sidebar were originally built using non-interactive `div` wrappers, causing screen readers to miss the route sequence and preventing users from utilizing native keyboard navigation (tabbing) or visual focus indicators, which violated basic accessibility standards for interactive list elements.
+**Action:** Always convert custom interactive lists (like route steps or waypoints) into semantic `<button type="button">` elements. Add explicit `w-full text-left`, `aria-current="step"` for selected states, and explicit `focus-visible:outline-none focus-visible:ring-2` Tailwind modifiers to ensure functional and visible keyboard navigation across complex UI elements.
