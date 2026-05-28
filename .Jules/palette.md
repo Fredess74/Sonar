@@ -1,0 +1,4 @@
+
+## 2024-05-28 - [Glassmorphism Keyboard Accessibility]
+**Learning:** For glassmorphic compound components (like the Search Island in Header), relying solely on `focus` states for individual inputs breaks the unified visual appearance. `focus-within` must be applied to the parent container alongside `group` to trigger border/shadow changes, and `group-focus-within` on sibling icons (like search) provides a cohesive focus state without needing JS focus event handlers. Additionally, explicit `focus-visible:ring-2` on icon-only buttons inside the header is required to guarantee keyboard navigation visibility against dark/transparent backgrounds.
+**Action:** Always test glassmorphic UI components with `Tab` navigation and ensure `group-focus-within` is used for unified focus styling across parent containers and sibling visual elements.
