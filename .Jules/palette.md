@@ -1,0 +1,3 @@
+## 2024-05-29 - Accessible Timeline Pattern
+**Learning:** In the Sidebar timeline component, interactive steps were previously implemented as generic `div` elements relying entirely on `onClick` handlers and visual styles to convey selection, lacking semantic meaning and native focus management.
+**Action:** Always refactor interactive list/timeline items to semantic `<button type="button">` elements. Apply `w-full text-left` to maintain standard styling, `aria-current="step"` to communicate the selected state to screen readers, and explicit focus styles (e.g., `focus-visible:outline-none focus-visible:ring-2`) to guarantee robust keyboard accessibility.
