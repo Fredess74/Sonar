@@ -1,0 +1,4 @@
+
+## 2024-05-30 - Interactive List Accessibility
+**Learning:** In responsive map overlays (like Sidebar and BottomSheet), interactive lists of waypoints were implemented as `div` elements with `onClick` handlers, which caused them to be inaccessible to keyboard users and screen readers. Additionally, selected state styling relies heavily on Tailwind utility classes (like `border-sonar-accent/40`) but lacked semantic state indication (`aria-current`).
+**Action:** Always implement interactive list items that function as navigation or selection triggers as `<button type="button">` with `w-full text-left`. Ensure they include `focus-visible` styles (e.g., `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent`) and use `aria-current="step"` dynamically for the selected state to ensure cohesive keyboard and screen reader accessibility without JavaScript focus event overhead.
