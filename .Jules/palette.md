@@ -1,0 +1,3 @@
+## 2024-05-24 - [Semantic Waypoints]
+**Learning:** Interactive list items (like timeline steps) within `Sidebar` and `BottomSheet` lacked semantic meaning when implemented as `div` elements, and failed to correctly signal selection states to screen readers.
+**Action:** Always use `<button type="button">` with `w-full text-left` classes for interactive list items. Include `aria-current="step"` on the currently selected item to provide correct programmatic context across responsive views. Include explicit keyboard focus states like `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent`.
