@@ -14,6 +14,7 @@ export const BottomSheet = ({ route, onStepClick, selectedStepId }: BottomSheetP
 
   useEffect(() => {
     if (selectedStepId) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsOpen(true);
     }
   }, [selectedStepId]);
