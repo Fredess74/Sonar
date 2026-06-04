@@ -1,0 +1,3 @@
+## 2024-06-04 - Semantic Interactive Lists
+**Learning:** Interactive list items (like timeline steps in sequence) must be implemented as semantic `<button type="button">` elements rather than `div` tags to be properly accessible to screen readers and keyboard navigation.
+**Action:** When creating clickable list items or sequence navigators, always use `<button type="button">` with `w-full text-left`, `cursor-pointer`, and explicit `focus-visible` styles (e.g., `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent`). Also, for sequential selections, ensure the active element uses `aria-current="step"`.
