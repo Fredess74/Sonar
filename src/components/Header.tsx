@@ -24,6 +24,7 @@ export const Header = ({
         <Search size={18} className="text-sonar-muted group-hover:text-sonar-accent transition-colors" />
         <input
           type="text"
+          aria-label="Search destinations"
           placeholder="Where to next?"
           className="bg-transparent border-none outline-none text-white text-sm w-full placeholder:text-sonar-muted/50"
         />
