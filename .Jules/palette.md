@@ -1,0 +1,4 @@
+
+## 2024-05-19 - [Interactive List Items]
+**Learning:** Interactive list items (like timeline steps) must be implemented as `<button type='button'>` rather than `<div>` to ensure full keyboard support and screen reader compatibility. Additionally, using `aria-current="step"` for the active state and adding explicit `focus-visible` styles like `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent` is vital for proper accessibility and visual feedback during keyboard navigation.
+**Action:** When creating or updating interactive list views (especially in components like `Sidebar` or `BottomSheet`), always use accessible `<button>` components with `w-full text-left` to maintain layout structure while enabling correct semantic roles and states (`aria-current`, `focus-visible`).
