@@ -20,12 +20,13 @@ export const Header = ({
     <div className="fixed top-4 left-1/2 -translate-x-1/2 z-30 flex items-center gap-4 w-[90%] max-w-2xl">
 
       {/* Search Island */}
-      <div className="flex-1 bg-sonar-surface/80 backdrop-blur-xl border border-white/10 rounded-full h-12 px-4 flex items-center gap-3 shadow-neon transition-all hover:border-sonar-accent/30 group">
-        <Search size={18} className="text-sonar-muted group-hover:text-sonar-accent transition-colors" />
+      <div className="flex-1 bg-sonar-surface/80 backdrop-blur-xl border border-white/10 rounded-full h-12 px-4 flex items-center gap-3 shadow-neon transition-all hover:border-sonar-accent/30 focus-within:border-sonar-accent/50 focus-within:shadow-neon-strong group">
+        <Search size={18} className="text-sonar-muted group-hover:text-sonar-accent group-focus-within:text-sonar-accent transition-colors" />
         <input
           type="text"
           placeholder="Where to next?"
           className="bg-transparent border-none outline-none text-white text-sm w-full placeholder:text-sonar-muted/50"
+          aria-label="Search destination"
         />
         <div className="w-px h-4 bg-white/10 mx-1" />
         <button
