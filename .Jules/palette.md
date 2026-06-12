@@ -1,0 +1,3 @@
+## 2024-05-24 - [Search Island Cohesive Focus Pattern]
+**Learning:** When using compound glassmorphic inputs where the interactive input element is wrapped alongside icons (e.g., Search Island), simply adding `focus` styling to the input leaves the wrapper unstyled. Using `focus-within` on the parent container alongside `group-focus-within` on sibling icons creates a unified, accessible, and polished focus state for the entire component block without requiring custom JavaScript focus management.
+**Action:** Always use `focus-within` on the parent container and `group-focus-within` on decorative sibling elements when styling compound inputs to ensure the entire component reflects the focus state.
