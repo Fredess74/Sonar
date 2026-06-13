@@ -1,0 +1,3 @@
+## 2024-03-14 - [Interactive Timeline Accessibility]
+**Learning:** Interactive timeline waypoints in the Sidebar were originally implemented as clickable `<div>` elements, missing both semantic meaning and keyboard focus styling. Adding custom interactions without native element semantics degrades screen reader navigation. Additionally, selected elements should use `aria-current="step"` rather than relying solely on visual cues (like an accent background color).
+**Action:** When implementing custom interactive lists or timelines, always use `<button type="button">` with `w-full text-left`. Ensure explicit `focus-visible` classes are added for keyboard users, and use `aria-current="step"` to semantically indicate the currently active step.
