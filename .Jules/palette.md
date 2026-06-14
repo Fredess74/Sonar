@@ -1,0 +1,3 @@
+## 2024-06-14 - [Glassmorphic Focus Patterns]
+**Learning:** For glassmorphic compound components (like the Search Island with inputs and sibling icons), relying on standard `:focus` on the input element is insufficient because the background surface and siblings don't visually react.
+**Action:** Use `focus-within` and `group` on the parent container to apply cohesive focus styles (e.g. `focus-within:shadow-neon-strong`, `focus-within:ring-1`) and use `group-focus-within:text-[color]` on sibling elements (like icons) to ensure an accessible, app-wide focus state without needing custom JavaScript focus event handlers.
