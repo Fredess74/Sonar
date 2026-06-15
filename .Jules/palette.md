@@ -1,0 +1,3 @@
+## 2024-06-15 - [Interactive Timeline Waypoints Accessibility]
+**Learning:** Timeline items or waypoints that act as interactive selection triggers within a sequence were previously implemented as generic `div` elements, breaking screen reader navigation and keyboard focus tracking.
+**Action:** Always implement interactive list items in sequences (like timeline steps) as semantic `<button type="button">` with `w-full text-left`, `cursor-pointer`, and `aria-current="step"` for selected states. Ensure explicit `focus-visible` styles (e.g., `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent`) are applied for keyboard accessibility.
