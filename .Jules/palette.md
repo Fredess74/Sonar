@@ -1,0 +1,3 @@
+## 2024-06-17 - Interactive Timeline List Accessibility
+**Learning:** In responsive map-based interfaces with dual-views (Sidebar on desktop, BottomSheet on mobile), interactive list items representing timeline steps must be semantically implemented as `<button type="button">` with explicitly defined `aria-current="step"` for selected states. Using `div` with `onClick` violates accessibility standards for keyboard navigation and screen readers.
+**Action:** Always ensure interactive list items across components use `<button>` tags with `w-full text-left`, `cursor-pointer`, and explicit `focus-visible` styles (`focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent`) for robust keyboard accessibility and consistent semantic meaning.
