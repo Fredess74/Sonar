@@ -1,0 +1,3 @@
+## 2024-06-20 - Adding ARIA Labels to Inputs & Enhancing Focus States
+**Learning:** Text inputs inside compound components without explicit `<label>` elements require `aria-label` attributes to ensure screen readers can accurately announce their purpose. Additionally, for glassmorphic elements (like the search island), relying solely on `focus` states for input outlines is insufficient; applying `focus-within` to the parent container ensures cohesive, accessible focus indicators for keyboard users.
+**Action:** Always provide `aria-label` for standalone text inputs or textareas when explicit labels are missing. Use `focus-within` on compound UI containers to group focus feedback logically.
