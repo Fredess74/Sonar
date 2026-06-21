@@ -20,16 +20,17 @@ export const Header = ({
     <div className="fixed top-4 left-1/2 -translate-x-1/2 z-30 flex items-center gap-4 w-[90%] max-w-2xl">
 
       {/* Search Island */}
-      <div className="flex-1 bg-sonar-surface/80 backdrop-blur-xl border border-white/10 rounded-full h-12 px-4 flex items-center gap-3 shadow-neon transition-all hover:border-sonar-accent/30 group">
-        <Search size={18} className="text-sonar-muted group-hover:text-sonar-accent transition-colors" />
+      <div className="flex-1 bg-sonar-surface/80 backdrop-blur-xl border border-white/10 rounded-full h-12 px-4 flex items-center gap-3 shadow-neon transition-all hover:border-sonar-accent/30 group focus-within:border-sonar-accent/50 focus-within:shadow-[0_0_15px_rgba(25,195,125,0.4)]">
+        <Search size={18} className="text-sonar-muted group-hover:text-sonar-accent group-focus-within:text-sonar-accent transition-colors" />
         <input
           type="text"
           placeholder="Where to next?"
+          aria-label="Search destinations"
           className="bg-transparent border-none outline-none text-white text-sm w-full placeholder:text-sonar-muted/50"
         />
         <div className="w-px h-4 bg-white/10 mx-1" />
         <button
-            className="p-1.5 hover:bg-white/10 rounded-full text-sonar-muted hover:text-white transition-colors"
+            className="p-1.5 hover:bg-white/10 rounded-full text-sonar-muted hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent"
             aria-label="User profile"
         >
             <User size={18} />
@@ -40,7 +41,7 @@ export const Header = ({
       <div className="bg-sonar-surface/80 backdrop-blur-xl border border-white/10 rounded-full h-12 px-2 flex items-center gap-1 shadow-lg">
         <button
             onClick={onPlanClick}
-            className="p-2.5 rounded-full hover:bg-white/10 text-sonar-accent transition-colors relative group"
+            className="p-2.5 rounded-full hover:bg-white/10 text-sonar-accent transition-colors relative group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent"
             title="Plan New Trip"
             aria-label="Plan New Trip"
         >
@@ -53,7 +54,7 @@ export const Header = ({
         {generatedOptions.length > 1 && (
             <button
                 onClick={onSwitchRoute}
-                className="p-2.5 rounded-full hover:bg-white/10 text-white transition-colors relative group"
+                className="p-2.5 rounded-full hover:bg-white/10 text-white transition-colors relative group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent"
                 title="Switch Route"
                 aria-label="Switch Route"
             >
@@ -68,7 +69,7 @@ export const Header = ({
 
         <button
             onClick={onSimulateClick}
-            className={`p-2.5 rounded-full transition-all duration-300 relative group ${
+            className={`p-2.5 rounded-full transition-all duration-300 relative group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent ${
                 isSimulating
                 ? 'bg-sonar-accent text-sonar-bg shadow-[0_0_15px_rgba(25,195,125,0.6)]'
                 : 'hover:bg-white/10 text-white'
