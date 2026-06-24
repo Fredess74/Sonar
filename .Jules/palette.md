@@ -1,0 +1,3 @@
+## 2024-05-15 - [Timeline List Accessibility]
+**Learning:** Interactive list items (like timeline steps in sequence) must be implemented as `<button type='button'>` rather than `div` elements to ensure full keyboard navigation support and screen reader compatibility. Using `div` with `onClick` does not naturally capture keyboard focus or announce the element as interactive.
+**Action:** Always use `<button type="button">` with `w-full text-left`, `cursor-pointer`, explicit `focus-visible` styles, and `aria-current='step'` for selected states across responsive views when creating interactive lists or timelines.
