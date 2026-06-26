@@ -1,0 +1,3 @@
+## 2024-05-19 - Interactive List Items as Buttons
+**Learning:** Interactive timeline steps should be implemented as native `<button type="button">` elements rather than `<div>` wrappers to ensure built-in keyboard navigation support and accessible semantics. Using `aria-current="step"` clearly communicates the active item to screen readers, and applying `w-full text-left` ensures the layout remains consistent while providing the full clickable area.
+**Action:** When creating selectable lists or timelines, always use `<button>` elements, manage the active state with `aria-current`, and ensure explicit `focus-visible` styles are provided.
