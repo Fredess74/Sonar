@@ -70,6 +70,7 @@ export const Planner = ({ onClose, onRouteGenerated }: PlannerProps) => {
                             value={request}
                             onChange={(e) => setRequest(e.target.value)}
                             autoFocus
+                            aria-label="Describe your ideal trip"
                         />
                         <button
                             onClick={handleGeneratePrompt}
@@ -91,6 +92,7 @@ export const Planner = ({ onClose, onRouteGenerated }: PlannerProps) => {
                                 className="w-full h-full p-4 bg-transparent text-sm font-mono text-sonar-muted resize-none focus:outline-none"
                                 value={prompt}
                                 readOnly
+                                aria-label="Generated prompt to copy"
                             />
                             <button
                                 onClick={handleCopyPrompt}
@@ -132,6 +134,7 @@ export const Planner = ({ onClose, onRouteGenerated }: PlannerProps) => {
                                 setError(null);
                             }}
                             autoFocus
+                            aria-label="Paste the JSON response"
                         />
 
                         {error && (
