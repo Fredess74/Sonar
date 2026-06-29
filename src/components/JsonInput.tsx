@@ -39,6 +39,7 @@ export const JsonInput = ({ defaultValue, onApply, onClose }: JsonInputProps) =>
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
                 spellCheck={false}
+                aria-label="Edit JSON intent"
             />
 
             {error && (
