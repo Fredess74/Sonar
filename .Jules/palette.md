@@ -1,0 +1,3 @@
+## 2024-07-03 - Interactive List Item Accessibility
+**Learning:** In desktop sidebar components (like `Sidebar.tsx`), interactive list items representing sequence or selections (e.g., timeline steps) must use semantic interactive elements like `<button type="button">` rather than `<div>`. This enables proper focus management and accessibility.
+**Action:** When implementing selectable lists, use `<button type="button">` with properties such as `w-full text-left`, `cursor-pointer`, explicit `focus-visible` styles (e.g., `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent`), and set `aria-current="step"` on the currently selected item.
