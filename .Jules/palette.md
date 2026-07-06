@@ -1,0 +1,3 @@
+## 2024-07-06 - Accessible Timeline Items
+**Learning:** Interactive list items (like timeline steps) must be implemented as `<button type='button'>` rather than `div` elements, and require `w-full text-left`, `cursor-pointer`, `aria-current='step'` for selection states, and explicit `focus-visible` styling (`focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonar-accent`) to ensure full keyboard navigation support across responsive views.
+**Action:** Always use semantic buttons with `aria-current` and explicit focus rings for interactive list selections, instead of relying on `onClick` handlers on non-interactive `div` tags.
